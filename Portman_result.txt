@@ -1,0 +1,289 @@
+Postman results
+
+
+======================================================================
+Method: GET
+URL: http://127.0.0.1:8000/book/
+Parameters: None
+Status: 200OK
+Result:
+[
+    {
+        "id": 1,
+        "name": "Black Holes",
+        "author": 1
+    },
+    {
+        "id": 2,
+        "name": "Illusions",
+        "author": 2
+    },
+    {
+        "id": 3,
+        "name": "Harry Potter",
+        "author": 3
+    },
+    {
+        "id": 10,
+        "name": "From the begining of time!",
+        "author": 1
+    },
+    {
+        "id": 11,
+        "name": "seagull!",
+        "author": 2
+    }
+]
+
+Comment: All books
+
+======================================================================
+
+Method: GET
+URL: http://127.0.0.1:8000/book/2
+Parameters: None
+Status: 200OK
+Result:
+{
+    "id": 2,
+    "name": "Illusions",
+    "author": 2
+}
+
+
+Comment: Book with id=2
+
+======================================================================
+
+Method: POST
+URL: http://127.0.0.1:8000/book/
+Parameters: 
+	{
+		"name":"fantastic beasts",
+		"author":3
+	}
+
+Status: 201Created
+Result:
+{
+     "id": 12,
+     "name": "fantastic beasts!",
+     "author": 3
+}
+
+
+
+Comment: 
+New book created.
+New book name has “!” in the end.
+
+See BookViewSet
+
+======================================================================
+
+Method: PATCH
+URL: http://127.0.0.1:8000/book/12/
+Parameters: 
+{
+    "name":"Fantastic beasts"
+}
+
+Status: 200OK
+Result:
+{
+    "id": 12,
+    "name": "Fantastic beasts",
+    "author": 3
+}
+
+
+Comment: Name field is updated. Partial update
+
+======================================================================
+
+Method: PUT
+URL: http://127.0.0.1:8000/book/12/
+Parameters: 
+{
+    "id": 12,
+    "name": "Fantastic beasts!!!",
+    "author": 2
+}
+
+Status: 200OK
+Result:
+{
+    "id": 12,
+    "name": "Fantastic beasts!!!",
+    "author": 2
+}
+
+Comment: All fields are updated
+
+======================================================================
+
+Method: DELETE
+URL: http://127.0.0.1:8000/book/12/
+Parameters: 
+Status: 204No Content
+Result:
+
+
+Comment: Book is deleted
+
+======================================================================
+
+Method: DELETE
+URL: http://127.0.0.1:8000/book/12/
+Parameters: 
+{
+    "detail": "Not found."
+}
+
+Status: 404Not Found
+Result:
+
+
+Comment: The same request. Book is not found
+
+======================================================================
+
+Method: GET
+URL: http://127.0.0.1:8000/book/?age=58
+Parameters: 
+Status: 200OK
+Result:
+[
+    {
+        "id": 1,
+        "name": "Black Holes",
+        "author": 1
+    },
+    {
+        "id": 10,
+        "name": "From the begining of time!",
+        "author": 1
+    }
+]
+
+
+Comment: Books with author age>58
+
+======================================================================
+
+Method: 
+URL: 
+Parameters: 
+Status: 
+Result:
+
+
+Comment: Books with author age>58
+
+======================================================================
+
+Method: GET
+URL: http://127.0.0.1:8000/author/
+Parameters: 
+Status: 200OK
+Result:
+[
+    {
+        "id": 1,
+        "name": "Hawking",
+        "age": 60
+    },
+    {
+        "id": 2,
+        "name": "Bach",
+        "age": 55
+    },
+    {
+        "id": 3,
+        "name": "Rowling",
+        "age": 50
+    }
+]
+
+
+Comment: All authors
+
+======================================================================
+
+Method: GET
+URL: http://127.0.0.1:8000/author/?name-search=Black
+Parameters: 
+Status: 200OK
+Result:
+[
+    {
+        "id": 1,
+        "name": "Hawking",
+        "age": 60
+    }
+]
+
+
+Comment: Authors, who have books with word ‘Black’ in the name
+
+======================================================================
+
+Method: GET
+URL: http://127.0.0.1:8000/author/2/showbooks/
+Parameters: 
+Status: 200OK
+Result:
+{
+    "id": 2,
+    "name": "Bach",
+    "age": 55,
+    "book": [
+        2,
+        11
+    ]
+}
+
+
+Comment: Author id=2 with additional field ”book” with list of all books id of this author
+
+======================================================================
+
+Method: GET
+URL: http://127.0.0.1:8000/author/allauthors/
+Parameters: 
+Status: 
+Result:
+[
+    {
+        "id": 1,
+        "name": "Hawking",
+        "age": 60,
+        "book": [
+            "Black Holes",
+            "From the begining of time!"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Bach",
+        "age": 55,
+        "book": [
+            "Illusions",
+            "seagull!"
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Rowling",
+        "age": 50,
+        "book": [
+            "Harry Potter"
+        ]
+    }
+]
+
+
+Comment: All authors with books field which contains a list of books names
+
+======================================================================
+
