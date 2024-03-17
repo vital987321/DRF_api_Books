@@ -38,6 +38,7 @@ class BookViewSet(viewsets.ModelViewSet):
     serializer_class = BookSerializer
 
     def perform_create(self, serializer):
+        print('User:',self.request.user)
         serializer.save(name=serializer.validated_data['name']+'!')
 
 
